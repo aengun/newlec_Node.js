@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Count : <%=count%></h1>
+
+    <ul>list 1 (for)
+        <% for(let i = 0; i < list.length; i++){ %>
+        <li><span></span>
+            <a href="">
+                <%=list[i].title%>
+            </a>
+        </li>
+        <% } %>
+    </ul>
+
+    <ul>list 2 (for of)
+        <% for(let n of list){ %>
+        <li><span></span>
+            <a href="">
+                <%=n.title%>
+            </a>
+        </li>
+        <% } %>
+    </ul>
+
+    <ul>list 3 (for each)
+        <% list.forEach( n => { %>
+        <li><span></span>
+            <a href="">
+                <%=n.title%>
+            </a>
+        </li>
+        <% }); %>
+    </ul>
+
+</body>
+
+</html>
