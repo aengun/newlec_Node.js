@@ -1,15 +1,25 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import Body from "./components/Body"
+import IndexContent from "./components/IndexContent"
+import CustomerLayout from "./components/customer/Layout"
 
 function App() {
 
   return (
-    <div>
-      <Header />
-      <Body />
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={IndexContent} />
+          <Route path="/customer" component={CustomerLayout} />
+        </Switch>
+        {/* <Body />
+      <CustomerLayout /> */}
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

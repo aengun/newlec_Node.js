@@ -31,8 +31,11 @@ router.get('/list', function (req, res, next) {
 
 });
 
-router.get('/detail', function (req, res, next) {
-    res.render("./customer/notice/detail");
+router.get('/:id', function (req, res, next) {
+
+    console.log(req.params.id);
+    res.end("detail");
+
 });
 
 module.exports = router;

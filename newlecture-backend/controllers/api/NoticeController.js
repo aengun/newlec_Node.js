@@ -13,8 +13,14 @@ router.get('/list', function (req, res, next) {
 
 });
 
-router.get('/detail', function (req, res, next) {
-    res.render("./customer/notice/detail");
-});
+router.get('/:id', function (req, res, next) {
 
+    dbTemplate
+        .query(`SELECT * FROM Notice where id=${req.params.id}`)
+        .then(list => list[0])
+        .then(notice => {
+            res.json(notice);
+        });
+
+});
 module.exports = router;
