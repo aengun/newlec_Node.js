@@ -8,6 +8,7 @@ let cors = require("cors");
 var homeController = require('./controllers/HomeController');
 var customerNoticeController = require('./controllers/customer/NoticeController');
 var noticeController = require('./controllers/api/NoticeController');
+var memberController = require('./controllers/api/MemberController');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use('/', homeController);
 app.use('/customer/notice', customerNoticeController);
 app.use('/api/notice', noticeController);
+app.use('/api/member', memberController);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

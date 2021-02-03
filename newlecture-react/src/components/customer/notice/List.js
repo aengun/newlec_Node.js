@@ -16,7 +16,7 @@ export default class List extends React.Component {
             .then(result => result.json())
             .then(list => {
                 // console.log(list[0].title);
-                this.setState({list});
+                this.setState({ list });
             });
     }
 
@@ -67,7 +67,7 @@ export default class List extends React.Component {
                         {
                             this.state.list.map(n => <tr key={n.id}>
                                 <td>{n.id}</td>
-                                <td className="title indent text-align-left"><a href={n.id}>{n.title}</a></td>
+                                <td className="title indent text-align-left"><Link to={`${n.id}`}>{n.title}</Link></td>
                                 <td>{n.writerId}</td>
                                 <td>{n.regdate}</td>
                                 <td>{n.hit}</td>

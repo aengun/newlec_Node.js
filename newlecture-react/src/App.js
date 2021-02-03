@@ -4,6 +4,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import IndexContent from "./components/IndexContent"
 import CustomerLayout from "./components/customer/Layout"
+import MemberLayout from "./components/member/Layout"
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={IndexContent} />
           <Route path="/customer" component={CustomerLayout} />
+          <Route path="/member" component={MemberLayout} />
         </Switch>
         {/* <Body />
       <CustomerLayout /> */}
