@@ -18,7 +18,7 @@ export default class Login extends React.Component {
 
     loginButtonClickHandler(e){
         e.preventDefault();
-        console.log("로그인 버튼 누름");
+        // console.log("로그인 버튼 누름");
 
         let uid = this.uidInput.current.value;
         let pwd = this.pwdInput.current.value;
@@ -27,11 +27,16 @@ export default class Login extends React.Component {
             .then(result => result.json())
             .then(member => {
                 console.log(bcrypt.compareSync(pwd, member.pwd));
-                // if(bcrypt.compareSync(pwd, member.pwd)){
-                //     //성공하면 뭐할건딩?
-                //     SecurityContext.userName = uid;
-                //     SecurityContext.authorities = ['admin','teacher','user'];
-                // }
+                if(bcrypt.compareSync(pwd, member.pwd)){
+                    //성공하면 뭐할건딩?
+                    SecurityContext.userName = uid;
+                    SecurityContext.authorities = ['admin','teacher','user'];
+                    // console.log(this.props.location.state.returnURL);
+                    let returnURL = this.props.location.state.returnURL || "/";
+
+                    this.props.history.push(returnURL);
+                    
+                }
             }, err => {
                 console.log(err);
             });
