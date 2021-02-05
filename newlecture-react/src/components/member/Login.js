@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import SecurityContext from "../security/SecurityContext"
+import AuthStore from "../../reducer/AuthStore";
 
 export default class Login extends React.Component {
     constructor() {
@@ -29,8 +30,10 @@ export default class Login extends React.Component {
                 console.log(bcrypt.compareSync(pwd, member.pwd));
                 if(bcrypt.compareSync(pwd, member.pwd)){
                     //성공하면 뭐할건딩?
-                    SecurityContext.userName = uid;
-                    SecurityContext.authorities = ['admin','teacher','user'];
+                    // SecurityContext.userName = uid;
+                    // SecurityContext.authorities = ['admin','teacher','user'];
+                    AuthStore.store.dispatch({type:1, userName:uid});
+
                     // console.log(this.props.location.state.returnURL);
                     let returnURL = this.props.location.state.returnURL || "/";
 
