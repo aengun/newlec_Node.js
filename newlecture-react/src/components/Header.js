@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SecurityContext from "./security/SecurityContext";
 // import AuthStore from "../reducer/AuthStore";
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 class Header extends Component {
     constructor() {
@@ -16,13 +16,23 @@ class Header extends Component {
         //     let store = AuthStore.store.getState();
         //     this.setState({ authenticated: store.userName ? true : false });
         // })
+        // console.log(`userName : ${this.props.userName}`);
+        this.setState({ authenticated: this.props.userName ? true : false });
+    }
+    logoutClickHandler(e){
+        this.props.logout();
+        this.props.history.push("/index");
     }
     render() {
         let loginStateLink;
-        if (!this.state.authenticated)
+
+        let authenticated = this.props.userName ? true : false;
+
+        // if (!this.state.authenticated)
+        if (authenticated != true)
             loginStateLink = <li><Link to="/member/login">로그인</Link></li>
         else
-            loginStateLink = <li><Link to="/member/logout">로그아웃</Link></li>
+            loginStateLink = <li><Link to="/member/logout" onClick={this.logoutClickHandler.bind(this)}>로그아웃</Link></li>
 
         return <header id="header">
 
@@ -87,6 +97,20 @@ class Header extends Component {
         </header>;
     }
 }
+
+const mapStateToProps = (store) => {
+    return {
+        userName: store.userName
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => {
+            dispatch({type:2}); //로그아웃 type2
+        }
+    }
+};
 
 // export default Header;
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

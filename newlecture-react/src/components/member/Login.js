@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import SecurityContext from "../security/SecurityContext"
 import AuthStore from "../../reducer/AuthStore";
+import { connect } from "react-redux";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
     constructor() {
         super();
 
@@ -30,13 +31,19 @@ export default class Login extends React.Component {
                 console.log(bcrypt.compareSync(pwd, member.pwd));
                 if(bcrypt.compareSync(pwd, member.pwd)){
                     //성공하면 뭐할건딩?
+                    // 방법 1: 전역변수 사용
                     // SecurityContext.userName = uid;
                     // SecurityContext.authorities = ['admin','teacher','user'];
-                    AuthStore.store.dispatch({type:1, userName:uid});
+
+                    // 방법 2: 전역 state:redux store를 전역객체로 사용
+                    // AuthStore.store.dispatch({type:1, userName:uid});
 
                     // console.log(this.props.location.state.returnURL);
-                    let returnURL = this.props.location.state.returnURL || "/";
 
+                    // 방법 3: 전역 state를 connect로 연결해서 사용
+                    this.props.login(uid);
+
+                    let returnURL = this.props.location.state.returnURL || "/";
                     this.props.history.push(returnURL);
                     
                 }
@@ -100,3 +107,20 @@ export default class Login extends React.Component {
         </main>;
     }
 };
+
+const mapStateToProps = (store) => {
+    return {
+        userName:store.userName
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login:(uid) => {
+            dispatch({type:1, userName:uid});
+        }
+    }
+};
+
+// export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
