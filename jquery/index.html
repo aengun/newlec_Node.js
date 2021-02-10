@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +9,42 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="index.js"></script>
 </head>
+
 <body>
-    <input type="text">
-    <input type="button" value="click">
-    <img src="">
+    <style>
+        /* #s2{
+            width: 200px;
+            height: 200px;
+            overflow: scroll;
+        } */
+        #s2 input {
+            background-color: gray;
+            transition: background 1s;
+        }
+
+        #s2 input:first-child {
+            position: absolute;
+            left: 100px;
+            background-color: red;
+        }
+    </style>
+    <section id="s2">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        
+        <ul>
+
+        </ul>
+    </section>
+    <section id="s1">
+        <input type="text" value="https://www.sisaweek.com/news/photo/202006/135066_125017_5437.jpg">
+        <input type="button" value="click">
+        <input type="button" value="trigger">
+        <img src="">
+    </section>
 </body>
+
 </html>
